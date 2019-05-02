@@ -37,6 +37,15 @@ public class Date {
 		return report;
 	}
 	
+	
+	public long toLong() {
+		
+		long rValue = 0;
+		
+		return rValue;
+		
+	}
+	
 	//Getters
 	public int getDay() { return day; }
 	public int getMonth() { return month; }

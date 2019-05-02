@@ -38,8 +38,8 @@ public class Owner {
 	 * @param weight	The weight of the pet
 	 * @param height	The height of the pet
 	 */
-	public void addPet(String name, String type, int age, double weight, double height) {
-		pets.add(new Pet(name, type, age, weight, height));
+	public void addPet(String name, String type, int id, int age, double weight, double height) {
+		pets.add(new Pet(name, type, id, age, weight, height));
 	}
 	
 	/**
@@ -59,10 +59,24 @@ public class Owner {
 	}
 	
 	//Getters
+	/**
+	 * 
+	 * @return
+	 */
 	public String getName() { return name; }
-	public String getId() { return id; }
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String getID() { return id; }
 	public String getAddress() { return address; }
 	public int getPhoneNumber() { return phoneNumber; }
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Pet> getPets() { return pets; }
 	
 	//Setters

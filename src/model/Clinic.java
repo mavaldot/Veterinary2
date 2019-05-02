@@ -14,22 +14,33 @@ public class Clinic {
 	
 	//Non-static attributes
 	private String name;
-	private ArrayList<Owner> owners;
+	private double hRevenue;
+	private int petNum;
+	
 	private Room[] rooms;
-	private double revenue;
+	
+	private ArrayList<Owner> owners;
 	private ArrayList<History> histories;
+	private ArrayList<Service> services;
 	
 	/**
 	 * Class constructor
+	 * <p>
+	 * <b> post: </b> The room array is initialized <br>
+	 * <b> post: </b> The histories, owners and services arraylists are initialized. <br>
 	 * @param n		The name of the clinic
 	 */
 	public Clinic(String n) {
 		
 		name = n;
-		owners = new ArrayList<Owner>();
+		hRevenue = 0;
+		petNum = 0;
+		
 		rooms = new Room[MAX_ROOMS];
-		revenue = 0;
+
 		histories = new ArrayList<History>();
+		owners = new ArrayList<Owner>();
+		services = new ArrayList<Service>();
 		
 	}
 	
@@ -95,8 +106,9 @@ public class Clinic {
 	 * @param weight	The weight of the pet in kilograms
 	 */
 	public void addPet(String name, String type, int age, double weight, double height) {
+		petNum++;
 		int index = owners.size() - 1;
-		owners.get(index).addPet(name, type, age, weight, height);
+		owners.get(index).addPet(name, type, petNum, age, weight, height);
 	}
 	
 
@@ -297,7 +309,7 @@ public class Clinic {
 						histories.get(histories.size()-1).addRecord(rooms[i].getRecord());
 					}
 					
-					revenue += calculateHospitalizationCost(petName, day, month, year);
+					hRevenue += calculateHospitalizationCost(petName, day, month, year);
 					rooms[i].releasePet();
 					
 					success = true;
@@ -391,15 +403,94 @@ public class Clinic {
 		return foundOwner;
 	}
 	
+	/**
+	 * Adds a new service to the 
+	 * <p>
+	 * <b> pre: </b> <code> owners != null </code> <br>
+	 * <b> post: </b> a new service is added to the clinic's list of services. <br>
+	 * @param type		The type of service
+	 * @param day		The day the service was performed
+	 * @param month		The month the service was performed
+	 * @param year		The year the service was performed
+	 * @param petName	The name of the pet who received the service
+	 * @return 		A string informing the user whether the service was added successfully or not
+	 */
+	public String addService(int type, int day, int month, int year, String petName) {
+		
+		String msg = "";
+		
+		boolean found = false;
+		int petID = 0;
+		String ownerID = "";
+		
+		for(Owner o : owners) {
+			for(Pet p : o.getPets()) {
+				if(p.getName().equals(petName)) {
+					found = true;
+					petID = p.getID();
+					ownerID = o.getID();
+				}
+			}
+		}
+		
+		if(found) {
+			msg = "The service was added succssfully!";
+			services.add(new Service(type, new Date(day, month, year), petID, ownerID));	
+		} else {
+			msg = "ERROR. Could not find a pet named " + petName + "in this clinic.";
+		}
+		
+		return msg;
+		
+	}
+	
+	/**
+	 * Calculates the total revenue from all the performed services
+	 * <p>
+	 * <b> pre: </b> <code> services != null </code> 
+	 * @return A double containing the clinic's total revenue from services
+	 */
+	public double calculateServiceRevenue() {
+		
+		double revenue = 0;
+		
+		for(Service s : services) {
+			revenue += s.calculateCost();
+		}
+		
+		return revenue;
+	}
+	
+	/**
+	 * Calculates the average service revenue by taking the total revenue from services and dividing it by the total number of services performed
+	 * 
+	 * @return a double with the average service revenue
+	 * @throws ArithmeticException
+	 */
+	public double calculateAvgServiceRevenue() {
+		
+		double tRevenue = calculateServiceRevenue();
+		double avgRevenue = 0;
+		
+		try {
+			avgRevenue = tRevenue / services.size();
+		} catch (ArithmeticException e) {
+			avgRevenue = 0;
+		}
+		
+		return avgRevenue;
+		
+	}
+	
 	//Getters
 	public String getName() { return name; }
-	public double getRevenue() { return revenue; }
+	public double getHRevenue() { return hRevenue; }
 	public ArrayList<Owner> getOwners() { return owners; }
 	public ArrayList<History> getHistories() { return histories; }
 	
 	//Setters
 	public void setName(String n) { name = n; }
-	public void setRevenue(double rev) { revenue = rev; }
+	public void setRevenue(double rev) { hRevenue = rev; }
 	public void setOwner(ArrayList<Owner> owns) { owners = owns; }
 	public void setHistories(ArrayList<History> hs) { histories = hs; }	
 }

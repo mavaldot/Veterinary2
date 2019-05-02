@@ -12,6 +12,7 @@ public class Pet {
 	private String name;
 	private String type;
 	private int age;
+	private int id;
 	private double weight;
 	private double height;
 	private double bmi;
@@ -21,13 +22,15 @@ public class Pet {
 	 * 
 	 * @param n	The name of the pet
 	 * @param t	The type of the pet
+	 * @param i The id of the pet
 	 * @param a	The age of the pet
 	 * @param w	The weight of the pet
 	 * @param h	The height of the pet
 	 */
-	public Pet(String n, String t, int a, double w, double h) {
+	public Pet(String n, String t, int i, int a, double w, double h) {
 		name = n;
 		type = t;
+		id = i;
 		age = a;
 		weight = w;
 		height = h;
@@ -74,7 +77,19 @@ public class Pet {
 
 	
 	//Getters
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getName() { return name; }
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getID() { return id; }
+	
 	public String getType() { return type; }
 	public int getAge() { return age; }
 	public double getWeight() { return weight; }

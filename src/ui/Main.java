@@ -385,10 +385,12 @@ public class Main {
 				break;
 				
 			case 7:
-				System.out.printf("The total revenue is: %.2f COP\n", clinic.getRevenue());
+				
+				System.out.printf("The total revenue from hospitalizations is is: $%.2f \n", clinic.getHRevenue());
 				break;
 				
 			case 8:
+				
 				System.out.println("Please enter the name of the pet");
 				String roomsPetName = s.nextLine();
 				
@@ -399,6 +401,7 @@ public class Main {
 				break;
 				
 			case 9:
+				
 				System.out.println("Please enter the name of the pet");
 				String rPetName = s.nextLine();
 				String history = clinic.displayHistory(rPetName);
@@ -406,7 +409,9 @@ public class Main {
 				break;
 				
 			case 10:
-
+					
+				
+				
 				break;
 				
 			case 11:
@@ -427,25 +432,45 @@ public class Main {
 				
 			case 15:
 				
+				System.out.println("The clinic's total revenue from services is: $" + clinic.calculateServiceRevenue() + ".");
+				
 				break;
 				
 			case 16:
 				
+				System.out.printf("The clinic's total revenue is: $%.2f \n", clinic.getHRevenue() + clinic.calculateServiceRevenue());
 				break;
 				
 			case 17:
+				
+				int stype = 	askInt("Please enter the type of service. OPTIONS:\n"
+								+ "1. Bath\n"
+								+ "2. Home delivery bath\n"
+								+ "3. Dental prophylaxis\n"
+								+ "4. Vaccination\n");
+				int sday = 		askInt("Please enter the day of the month the service was performed.");
+				int smonth = 	askInt("Please enter the month the service was performed.");
+				int syear = 	askInt("Please enter the year the service was performed.");
+				
+				System.out.println("Please enter the name of the pet.");
+				String sPetName = s.nextLine();
+		
+				System.out.println(clinic.addService(stype, sday, smonth, syear, sPetName));
 				
 				break;
 				
 			case 18:
 				
+				System.out.printf("The clinic's average revenue from services is: $%.2f \n", clinic.calculateAvgServiceRevenue());
 				break;
 				
 			case 19:
 				
+				
 				break;
 				
 			case 20:
+				
 				
 				break;
 				
