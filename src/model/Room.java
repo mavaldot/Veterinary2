@@ -69,6 +69,45 @@ public class Room {
 		available = true;
 	}
 	
+	/**
+	 * Description This method allows to add new medicines that were prescription during the hospitalization at the patient stories.
+	 * <p>
+	 * <b> pre: </b> The patient clinic story must be not null. <br>
+	 * <b> post: </b> New medicines were added to the patient clinic story.
+	 * @param The medicine name. This param must be not null.
+	 * @param The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
+	 * @param The medicine cost by each dose. This param could be empty.
+	 * @param The frequency of medicine application. This param could be empty.
+	 * @return A message that indiques if medicine was added to the patient clinic story
+	*/
+	public String addNewMedication(String name, double dose, double cost, double frequency) {
+		String msg = "";
+		
+		if(available) {
+			msg = "ERROR. The pet is not currently hospitalized.";
+		}
+		else {
+			record.addNewMedication(name, dose, cost, frequency);
+			msg = "The medication was added successfully.";
+		}
+		
+		return msg;
+	}
+	
+	/**
+ 	 * Description This method allows to add new notes to the possible diagnostic during the hospitalization at the patient stories.
+ 	 * <p>
+	 * pre: The patient clinic story must be not null. <br>
+	 * post: New notes were added to the possible diagnostic in the patient clinic story.
+	 * @param The notes of possible diagnostic. This param must be not null.
+	 */
+	public void addNewDiagnosis(String newDiagnosis) {
+		
+		record.addDiagnosis(newDiagnosis);
+		
+	}
+	
+	
 	//Getters
 	public String getName() { return name; }
 	public Pet getCurrentPet() { return currentPet; }

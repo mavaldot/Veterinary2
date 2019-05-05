@@ -75,6 +75,32 @@ public class Record {
 		
 	}
 	
+	/**
+	 * Description This method allows to add new medicines that were prescription during the hospitalization at the patient stories.
+	 * <p>
+	 * <b> pre: </b> <code> medication != null </code> <br>
+	 * <b> post: </b> New medicines were added to the patient clinic story. <br>
+	 * @param The medicine name. This param must be not null.
+	 * @param The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
+	 * @param The medicine cost by each dose. This param could be empty.
+	 * @param The frequency of medicine application. This param could be empty.
+	 */
+	public void addNewMedication(String name, double dose, double cost, double frequency) {
+		
+		medications.add(new Medication(name, dose, cost, frequency));
+		
+	}
+	
+	/**
+	 * Adds a new possible diagnosis to the pet's list of diagnosis 
+	 * <p>
+	 * <b> post: </b> A new possible diagnosis is added to the pet's list of diagnosis
+	 * @param newDiagnosis	The new diagnosis
+	 */
+	public void addDiagnosis(String newDiagnosis) {
+		diagnosis += newDiagnosis + "\n";
+	}
+	
 	//Getters
 	public int getState() { return state; }
 	public Pet getPet() { return pet; }

@@ -65,7 +65,7 @@ public class Owner {
 	 *@param The new phone number of the client. This param could be empty.
 	 */
 	public void updateData(String addr, int phoneNum) {
-		if( !(addr.equals("")) || !(addr.equals("0")) ) {
+		if( !(addr.equals("")) && !(addr.equals("0")) ) {
 			address = addr;
 		}
 		

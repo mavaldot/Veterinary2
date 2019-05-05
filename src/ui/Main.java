@@ -119,7 +119,6 @@ public class Main {
 		
 		boolean running = true;
 		boolean asking = false;
-		Scanner s = new Scanner(System.in);
 		
 		while(running) {
 			System.out.println("\nPlease pick an option:");
@@ -133,7 +132,7 @@ public class Main {
 			System.out.println("8. Check how many rooms a pet occupies");
 			System.out.println("9. Display the record history of a pet");
 			System.out.println("10. Calculate the BMI of a pet");
-			System.out.println("11. Update the basic data of the client");
+			System.out.println("11. Update the basic data of a human client");
 			System.out.println("12. Add new prescribed medications to a hospitalized pet");
 			System.out.println("13. Add new notes to a pet's possible diagnosis");
 			System.out.println("14. Add a new symptom to a hosptalized pet");
@@ -145,6 +144,7 @@ public class Main {
 			System.out.println("20. Report the services performed within a given week");
 			System.out.println("21. Quit");
 			System.out.println("");
+			
 			
 			String choice = s.nextLine();
 			int choiceNum = 0;
@@ -429,13 +429,26 @@ public class Main {
 				
 			case 12:
 				
+				System.out.println("Please enter the name of the pet whose medication you want to add");
+				String newMedPetName = s.nextLine();
+				double newMedDose = askDouble("Please enter the dose of the new medication. If unknown, enter 0");
+				double newMedCost = askDouble("Please enter the cost of the new medication. If unknown, enter 0");
+				double newMedFreq = askDouble("Please enter the dose of the new medication. If unknown, enter 0");
+				
+				System.out.println(clinic.addNewMedication(newMedPetName, newMedDose, newMedCost, newMedFreq));
 				break;
 				
 			case 13:
 				
+				System.out.println("Please enter the name of the hospitalized pet");
+				String dPetName = s.nextLine();
+				System.out.println("Please enter the new diagnosis");
+				String newDiagnosis = s.nextLine();
+				System.out.println(clinic.addNewDiagnosis(dPetName, newDiagnosis));
 				break;
 				
 			case 14:
+				
 				
 				break;
 				

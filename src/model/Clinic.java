@@ -470,13 +470,13 @@ public class Clinic {
 	}
 	
 	/**
-	*	This method allows to calculate the body mass index for a given pet.
-	*	<p>
-	*	<b> pre: </b> The pet was created before and its attributes height and weight are not null neither height must be zero. <br>
-	*	<b> post: </b> The BMI is calculated. <br>
-	*	@param The name of the pet whose BMI is desired.
-	*	@return A String containing the pet's body mass index. If the pet is not found, the user is notified
-	*/
+	 *	This method allows to calculate the body mass index for a given pet.
+	 *	<p>
+	 *	<b> pre: </b> The pet was created before and its attributes height and weight are not null neither height must be zero. <br>
+	 *	<b> post: </b> The BMI is calculated. <br>
+	 *	@param The name of the pet whose BMI is desired.
+	 *	@return A String containing the pet's body mass index. If the pet is not found, the user is notified
+	 */
 	public String calculateBMI(String petName) {
 		
 		String msg = "";
@@ -502,13 +502,15 @@ public class Clinic {
 	}
 	
 	
-	/**Description This method allows to update the basic data of a veterinary client, these data include, address and phone number.
-	 *<p>
-	 *<b> pre: </b> <code> owners != null </code> <br> 
-	 *<b> post: </b> The address and /or phone number of the client is updated. <br>
-	 *@param The new address of the client. This param could be empty.
-	 *@param The new phone number of the client. This param could be empty.
-	 *@return A message informing the user if the pet owner's information was updated successfully
+	
+	/**
+	 * Description This method allows to update the basic data of a veterinary client, these data include, address and phone number.
+	 * <p>
+	 * <b> pre: </b> <code> owners != null </code> <br> 
+	 * <b> post: </b> The address and /or phone number of the client is updated. <br>
+	 * @param The new address of the client. This param could be empty.
+	 * @param The new phone number of the client. This param could be empty.
+	 * @return A message informing the user if the pet owner's information was updated successfully
 	 */
 	public String updateOwnerData(String addr, int phoneNum, String oName) {
 		
@@ -526,6 +528,71 @@ public class Clinic {
 			msg = "The client information was updated successfully.";
 		else
 			msg = "The pet owner named " + oName + " was not found.";
+		
+		return msg;
+		
+	}
+	
+	/**
+	 * Description This method allows to add new medicines that were prescription during the hospitalization at the patient stories.
+	 * <p>
+	 * <b> pre: </b> <code> owners != null </code> <br>
+	 * <b> post: </b> New medicines were added to the patient clinic story.
+	 * @param The pet's name. This param must not be null.
+	 * @param The medicine name. This param must be not null.
+	 * @param The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
+	 * @param The medicine cost by each dose. This param could be empty.
+	 * @param The frequency of medicine application. This param could be empty.
+	 * @return A message that indiques if medicine was added to the patient clinic story
+	 */
+	public String addNewMedication(String petName, double dose, double cost, double frequency) {
+		
+		String msg = "";
+		boolean found = false;
+		
+		for(int i = 0; i < MAX_ROOMS; i++) {
+			if(!rooms[i].getAvailable()) {
+				if(rooms[i].getCurrentPet().getName().equals(petName)) {
+					msg = rooms[i].addNewMedication(name, dose, cost, frequency);
+					found = true;
+				}
+			}
+		}
+		
+		if(!found) {
+			msg = "There is no pet named " + petName + " currently hospitalized in this veterinary clinic";
+		}
+		
+		return msg;
+	}
+	
+	/**
+	 * Adds a new possible diagnosis to a hospitalized pet
+	 * <p>
+	 * <b> post: </b> The pet's diagnosis is updated
+	 * 
+	 * @param petName		The name of the pet whose new possible diagnosis will be added
+	 * @param newDiagnosis	The new diagnosis that will be added to the pet's record
+	 * @return	A String indicating whether it was possible to add the new diagnosis to the pet
+	 */
+	public String addNewDiagnosis(String petName, String newDiagnosis) {
+		
+		String msg = "";
+		boolean found = false;
+		
+		for(int i = 0; i < MAX_ROOMS; i++) {
+			if(!rooms[i].getAvailable()) {
+				if(rooms[i].getCurrentPet().getName().equals(petName)) {
+					rooms[i].addNewDiagnosis(newDiagnosis);
+					found = true;
+				}
+			}
+		}
+		
+		if(found)
+			msg = "The new diagnosis was added successfully";
+		else
+			msg = "There is no pet named " + petName + " currently hospitalized in this veterinary clinic";
 		
 		return msg;
 		
