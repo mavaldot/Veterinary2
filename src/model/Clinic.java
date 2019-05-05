@@ -111,19 +111,6 @@ public class Clinic {
 		owners.get(index).addPet(name, type, petNum, age, weight, height);
 	}
 	
-
-	
-	/**
-	*  This method allows to update the basic data of a veterinary client, these data include, address and phone number.
-	*  <b> pre: </b> The client was created before. <br>
-	*  <b> post: </b>The address and /or phone number of the client is updated. <br>
-	*  @param The new address of the client. This param could be empty.
-	*  @param The new phone number of the client. This param could be empty.
-	*/
-	public void updateClient() {
-		
-	}
-	
 	/**
 	 * Hospitalizes a pet in a room. 
 	 * @param ownerName
@@ -479,6 +466,68 @@ public class Clinic {
 		}
 		
 		return avgRevenue;
+		
+	}
+	
+	/**
+	*	This method allows to calculate the body mass index for a given pet.
+	*	<p>
+	*	<b> pre: </b> The pet was created before and its attributes height and weight are not null neither height must be zero. <br>
+	*	<b> post: </b> The BMI is calculated. <br>
+	*	@param The name of the pet whose BMI is desired.
+	*	@return A String containing the pet's body mass index. If the pet is not found, the user is notified
+	*/
+	public String calculateBMI(String petName) {
+		
+		String msg = "";
+		boolean found = false;
+		double bmi = 0;
+		
+		for(Owner o : owners) {
+			for(Pet p : o.getPets()) {
+				if(p.getName().equals(petName)) {
+					found = true;
+					bmi = p.calculateBMI();
+				}
+			}
+		}
+		
+		if(found) 
+			msg = "The pet's BMI is " + bmi;
+		else
+			msg = "The pet named " + petName + " was not found in this clinic.";
+		
+		return msg;
+		
+	}
+	
+	
+	/**Description This method allows to update the basic data of a veterinary client, these data include, address and phone number.
+	 *<p>
+	 *<b> pre: </b> <code> owners != null </code> <br> 
+	 *<b> post: </b> The address and /or phone number of the client is updated. <br>
+	 *@param The new address of the client. This param could be empty.
+	 *@param The new phone number of the client. This param could be empty.
+	 *@return A message informing the user if the pet owner's information was updated successfully
+	 */
+	public String updateOwnerData(String addr, int phoneNum, String oName) {
+		
+		String msg = "";
+		boolean found = false;
+		
+		for(Owner o : owners) {
+			if(o.getName().equals(oName)) {
+				found = true;
+				o.updateData(addr, phoneNum);
+			}	
+		}
+		
+		if(found) 
+			msg = "The client information was updated successfully.";
+		else
+			msg = "The pet owner named " + oName + " was not found.";
+		
+		return msg;
 		
 	}
 	

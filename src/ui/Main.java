@@ -410,11 +410,20 @@ public class Main {
 				
 			case 10:
 					
-				
+				System.out.println("Please enter the name of the pet");
+				String bmiPetName = s.nextLine();
+				System.out.println(clinic.calculateBMI(bmiPetName));
 				
 				break;
 				
 			case 11:
+				
+				System.out.println("Please enter the name of the pet owner");
+				String updatePetOwner = s.nextLine();
+				System.out.println("Please enter the new address. If unknown, enter 0");
+				String newAddress = s.nextLine();
+				int newPhoneNum = askInt("Please enter the new phone number. If unknown, enter 0");
+				System.out.println(clinic.updateOwnerData(newAddress, newPhoneNum, updatePetOwner));
 				
 				break;
 				
