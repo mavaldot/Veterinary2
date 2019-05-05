@@ -62,7 +62,12 @@ public class Clinic {
 		addPet("Ko", Pet.CAT, 4, 5.5, 7.6);
 		addPet("Bu", Pet.OTHER, 1, 2.2, 9.4);
 		
+		hospitalizePet("Esteban", "Ko", 5, 4, 2018, "Diarrhea", "Stomach Flu");
+		hospitalizePet("Johan", "Max", 2, 2, 2018, "Fever", "Viral infection");
 		
+		addNewMedication("Max", "Dolex", 4, 4, 4);
+		addNewMedication("Ko", "Ritalin", 3, 2, 5);
+		releasePet("Max", 2, 5, 2018);
 		
 		addService(Service.BATH, 4, 5, 2017, "Max");
 		addService(Service.DENTALPROPHYLAXIS, 12, 1, 2019, "Li");
@@ -536,7 +541,7 @@ public class Clinic {
 		boolean found = false;
 		
 		for(int i = 0; i < MAX_ROOMS; i++) {
-			if(!rooms[i].getAvailable()) {
+			if(!(rooms[i].getAvailable()) ) {
 				if(rooms[i].getCurrentPet().getName().equals(petName)) {
 					msg = rooms[i].addNewMedication(medName, dose, cost, frequency);
 					found = true;

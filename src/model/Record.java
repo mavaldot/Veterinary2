@@ -72,12 +72,11 @@ public class Record {
 		if(medications != null) {
 			msg += "\nMedications info: \n";
 			for(Medication m : medications) {
-				m.fullReport();
+				msg += m.fullReport();
 			}
 		} else {
 			msg += "\nMedications: None\n";
 		}
-		
 		return msg;
 		
 	}
