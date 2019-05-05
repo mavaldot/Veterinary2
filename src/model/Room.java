@@ -81,10 +81,10 @@ public class Room {
 	 * <p>
 	 * <b> pre: </b> The patient clinic story must be not null. <br>
 	 * <b> post: </b> New medicines were added to the patient clinic story.
-	 * @param The medicine name. This param must be not null.
-	 * @param The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
-	 * @param The medicine cost by each dose. This param could be empty.
-	 * @param The frequency of medicine application. This param could be empty.
+	 * @param name The medicine name. This param must be not null.
+	 * @param dose The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
+	 * @param cost The medicine cost by each dose. This param could be empty.
+	 * @param frequency The frequency of medicine application. This param could be empty.
 	 * @return A message that indiques if medicine was added to the patient clinic story
 	*/
 	public String addNewMedication(String name, double dose, double cost, double frequency) {
@@ -106,7 +106,7 @@ public class Room {
  	 * <p>
 	 * pre: The patient clinic story must be not null. <br>
 	 * post: New notes were added to the possible diagnostic in the patient clinic story.
-	 * @param The notes of possible diagnostic. This param must be not null.
+	 * @param newDiagnosis The notes of possible diagnostic. This param must be not null.
 	 */
 	public void addNewDiagnosis(String newDiagnosis) {
 		
@@ -119,7 +119,7 @@ public class Room {
  	 * <p>
 	 * pre: The patient clinic story must be not null. <br>
 	 * post: New notes were added to the possible diagnostic in the patient clinic story.
-	 * @param The new symptoms. This param must be not null.
+	 * @param newSymptom The new symptoms. This param must be not null.
 	 */
 	public void addNewSymptom(String newSymptom) {
 		
@@ -131,26 +131,29 @@ public class Room {
 	//Getters
 	
 	/**
-	 * 
-	 * @return
+	 * Returns the name of the room
+	 * @return The name of the room
 	 */
 	public String getName() { return name; }
 	
 	/**
-	 * 
-	 * @return
+	 * The current pet that is hospitalized in the room. If there is no pet in the room, returns <code> null </code>
+	 * @return The current pet in the room
 	 */
 	public Pet getCurrentPet() { return currentPet; }
 	
 	/**
-	 * 
-	 * @return
+	 * The medical record of the pet currently hospitalized in the room
+	 * If there is no pet hospitalized then there is no record, and this function
+	 * returns <code> null </code>
+	 * @return The medical record the pet currently hospitalized in the room
 	 */
 	public Record getRecord() { return record; }
 	
 	/**
-	 * 
-	 * @return
+	 * Returns a boolean representing whether the room is available (i.e. not 
+	 * occupied by a pet).
+	 * @return A boolean representing whether the room is available 
 	 */
 	public boolean getAvailable() { return available; }
 	

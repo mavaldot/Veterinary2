@@ -431,11 +431,13 @@ public class Main {
 				
 				System.out.println("Please enter the name of the pet whose medication you want to add");
 				String newMedPetName = s.nextLine();
+				System.out.println("Please enter the name of the new medication");
+				String newMedName = s.nextLine();
 				double newMedDose = askDouble("Please enter the dose of the new medication. If unknown, enter 0");
 				double newMedCost = askDouble("Please enter the cost of the new medication. If unknown, enter 0");
 				double newMedFreq = askDouble("Please enter the dose of the new medication. If unknown, enter 0");
 				
-				System.out.println(clinic.addNewMedication(newMedPetName, newMedDose, newMedCost, newMedFreq));
+				System.out.println(clinic.addNewMedication(newMedPetName, newMedName, newMedDose, newMedCost, newMedFreq));
 				break;
 				
 			case 13:

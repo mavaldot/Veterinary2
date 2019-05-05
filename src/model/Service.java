@@ -130,6 +130,13 @@ public class Service {
 	}
 	
 	//Getters
+	
+	/**
+	 * 
+	 * Returns the date when the service was performed
+	 * 
+	 * @return An object containing the date when the service was performed
+	 */
 	public Date getDate() {
 		return serviceDate;
 	}

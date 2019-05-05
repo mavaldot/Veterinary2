@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Contains all the important information regarding a medication prescribed to a pet.
+ * @author Mateo
+ *
+ */
 public class Medication {
 
 	//Attributes
@@ -40,14 +45,28 @@ public class Medication {
 	}
 	
 	//Getters
-	public String getName() { return name; } 
-	public double getDose() { return dose; }
-	public double getCostPerDose() { return costPerDose; }
-	public double getFrequency() { return frequency; }
 	
-	//Setters
-	public void setName(String n) { name = n; }
-	public void setDose(double d) { dose = d; }
-	public void setCostPerDose(double cpd) { costPerDose = cpd; }
-	public void setFrequency(double f) { frequency = f; }
+	/**
+	 * Returns the name of the medication
+	 * @return The name of the medication
+	 */
+	public String getName() { return name; } 
+	
+	/**
+	 * Returns the dose of the medication in milligrams
+	 * @return The dose of the medication in milligrams
+	 */
+	public double getDose() { return dose; }
+	
+	/**
+	 * Returns the cost per dose of the medication
+	 * @return The cost per dose of the medication
+	 */
+	public double getCostPerDose() { return costPerDose; }
+	
+	/**
+	 * Returns the frequency (per day) of the medication
+	 * @return The frequency of the medication
+	 */
+	public double getFrequency() { return frequency; }
 }

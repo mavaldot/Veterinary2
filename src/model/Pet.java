@@ -86,27 +86,28 @@ public class Pet {
 	//Getters
 	
 	/**
-	 * 
-	 * @return
+	 * Returns the name of the pet
+	 * @return The name of the pet
 	 */
 	public String getName() { return name; }
 	
 	/**
-	 * 
-	 * @return
+	 * Returns the ID of the pet
+	 * @return The ID of the pet
 	 */
 	public int getID() { return id; }
 	
+	/**
+	 * Returns the type of pet (Cat, Dog, Bird, Other)
+	 * @return The type of pet
+	 */
 	public String getType() { return type; }
-	public int getAge() { return age; }
-	public double getWeight() { return weight; }
-	public double getHeight() { return height; }
 	
-	//Setters
-	public void setName(String name) { this.name = name; }
-	public void setType(String type) { this.type = type; }
-	public void setAge(int age) { this.age = age; }
-	public void setWeight(double weight) { this.weight = weight; }
-	public void setHeight(double height) { this.height = height; }
+	/**
+	 * Returns the weight of the pet in kilograms
+	 * @return The weight of the pet
+	 */
+	public double getWeight() { return weight; }
+	
 	
 }

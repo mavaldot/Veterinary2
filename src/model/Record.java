@@ -87,10 +87,10 @@ public class Record {
 	 * <p>
 	 * <b> pre: </b> <code> medication != null </code> <br>
 	 * <b> post: </b> New medicines were added to the patient clinic story. <br>
-	 * @param The medicine name. This param must be not null.
-	 * @param The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
-	 * @param The medicine cost by each dose. This param could be empty.
-	 * @param The frequency of medicine application. This param could be empty.
+	 * @param name The medicine name. This param must be not null.
+	 * @param dose The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
+	 * @param cost The medicine cost by each dose. This param could be empty.
+	 * @param frequency The frequency of medicine application. This param could be empty.
 	 */
 	public void addNewMedication(String name, double dose, double cost, double frequency) {
 		
@@ -117,24 +117,6 @@ public class Record {
 	public void addSymptom(String newSymptom) {
 		symptoms += newSymptom + "\n";
 	}
-	
-	//Getters
-	public int getState() { return state; }
-	public Pet getPet() { return pet; }
-	public Owner getOwner() { return owner; }
-	public Date getDateOfEntry() { return dateOfEntry; }
-	public String getSymptoms() { return symptoms; }
-	public String getDiagnostic() { return diagnosis; }
-	public ArrayList<Medication> getMedications() { return medications; }
-	
-	//Setters
-	public void setState(int st) { state = st; }
-	public void setPet (Pet pt) { pet = pt; }
-	public void setOwner(Owner ownr) { owner = ownr; }
-	public void setDateOfEntry(Date dt) { dateOfEntry = dt; }
-	public void setSymptoms(String symp) { symptoms = symp; }
-	public void setDiagnosis(String diag) { diagnosis = diag; }
-	public void setMedications(ArrayList<Medication> md) { medications = md; }
 
 	/**
 	 * Calculates the cost of the pet's hospitalization
@@ -419,5 +401,26 @@ public class Record {
 		return cost;
 	}
 	
+	/**
+	 * Returns a list (specifically an arraylist) of all the information regarding the pet's medication
+	 * 
+	 * @return A list of the medications
+	 */
+	public ArrayList<Medication> getMedications() { return medications; }
+	
+	/**
+	 * Returns the state of the medical record (CLOSED = 0, OPEN = 1)
+	 * @return The state of the record
+	 */
+	public int getState() { return state; }
+	
+	
+	/**
+	 * Changes the state of the medical record (CLOSED = 0, OPEN = 1)
+	 * <p>
+	 * <b> post: </b> The state variable in the record is updated
+	 * @param state The current state of the medical record
+	 */
+	public void setState(int state) { this.state = state; }
 }
 	

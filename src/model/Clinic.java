@@ -27,9 +27,9 @@ public class Clinic {
 	 * Class constructor
 	 * <p>
 	 * <b> post: </b> The room array is initialized <br>
-	 * <b> post: </b> The histories arraylist are initialized. <br>
-	 * <b> post: </b> The owners arraylist are initialized. <br>
-	 * <b> post: </b> The services arraylist are initialized. <br>
+	 * <b> post: </b> The histories arraylist is initialized. <br>
+	 * <b> post: </b> The owners arraylist is initialized. <br>
+	 * <b> post: </b> The services arraylist is initialized. <br>
 	 * @param n		The name of the clinic
 	 */
 	public Clinic(String n) {
@@ -62,6 +62,8 @@ public class Clinic {
 		addPet("Ko", Pet.CAT, 4, 5.5, 7.6);
 		addPet("Bu", Pet.OTHER, 1, 2.2, 9.4);
 		
+		
+		
 		addService(Service.BATH, 4, 5, 2017, "Max");
 		addService(Service.DENTALPROPHYLAXIS, 12, 1, 2019, "Li");
 		addService(Service.HOMEBATH, 24, 7, 2018, "Ko");
@@ -71,13 +73,14 @@ public class Clinic {
 	 * Asigns a new medication to a pet in a room.
 	 * <p>
 	 * <b> pre: </b> <code> rooms != null </code> <br>
-	 * <b> pre: </b> <code> rooms.length >= 8 </code> <br>
+	 * <b> pre: </b> <code> rooms.length </code> must be greater than or equal to 8 <br>
 	 * <b>post: </b> One new medication is assigned to a pet in a room
 	 * <p>
 	 * @param petName		the name of the pet who will be assigned a new medicine
 	 * @param medName		the name of the medication
 	 * @param dose 			the dose of the medication
-	 * @param costPerDose	the frequency (per day) of the medication
+	 * @param costPerDose	the cost of each dose of the medication
+	 * @param frequency 	The frequency (per day) of the medication
 	 * @return 				<code> true </code> if the medication was added successfully, <code> false </code> if there is an 
 	 * 						error adding the medication.
 	 */
@@ -118,6 +121,7 @@ public class Clinic {
 	 * @param type		The type of pet
 	 * @param age		The age of the pet
 	 * @param weight	The weight of the pet in kilograms
+	 * @param height 	The height of the pet in meters
 	 */
 	public void addPet(String name, String type, int age, double weight, double height) {
 		petNum++;
@@ -127,13 +131,13 @@ public class Clinic {
 	
 	/**
 	 * Hospitalizes a pet in a room. 
-	 * @param ownerName
-	 * @param petName
-	 * @param day
-	 * @param month
-	 * @param year
-	 * @param symptoms
-	 * @param diagnosis
+	 * @param ownerName The name of the pet's owner
+	 * @param petName The name of the pet
+	 * @param day The day of the month
+	 * @param month The month
+	 * @param year The year
+	 * @param symptoms The symptoms presented by the pet
+	 * @param diagnosis The pet's diagnosis
 	 * @return
 	 */
 	public int hospitalizePet(String ownerName, String petName, int day, int month, int year, String symptoms, String diagnosis) {
@@ -344,7 +348,7 @@ public class Clinic {
 	 * Checks the record history of a pet 
 	 * <p>
 	 * <b> pre: </b> <code> histories != null </code> <br>
-	 * @param petName
+	 * @param petName The name of the pet
 	 * @return	A pet containing the record history of the pet
 	 */
 	public String displayHistory(String petName) {
@@ -368,41 +372,7 @@ public class Clinic {
 		
 	}
 	
-	/**
-	 * Finds a pet with the given name 
-	 * <b> pre: </b> <code> owners != null </code> 
-	 * 
-	 * @param name	The name of the pet you want to find
-	 * @return		The found pet. <code> null </code> if the pet is not found.
-	 */
-	public Pet findPetWithName(String name) {
-		Pet foundPet = null;
-		for(Owner o : owners) {
-			for(Pet p : o.getPets()) {
-				if(p.getName().equals(name))
-					foundPet = p;
-			}
-		}
-		
-		return foundPet;
-	}
-	
-	/**
-	 * Finds an owner with the given name 
-	 * <b> pre: </b> <code> owners != null </code> 
-	 * 
-	 * @param name	The name of the owner you want to find
-	 * @return		The found owner. <code> null </code> if the owner is not found.
-	 */
-	public Owner findOwnerWithName(String name) {
-		Owner foundOwner = null;
-		for(Owner o : owners) {
-			if(o.getName().equals(name))
-				foundOwner = o;
-		}
-		
-		return foundOwner;
-	}
+
 	
 	/**
 	 * Adds a new service to the 
@@ -488,11 +458,11 @@ public class Clinic {
 	 *	<p>
 	 *	<b> pre: </b> The pet was created before and its attributes height and weight are not null neither height must be zero. <br>
 	 *	<b> post: </b> The BMI is calculated. <br>
-	 *	@param The name of the pet whose BMI is desired.
+	 *	@param petName The name of the pet whose BMI is desired.
 	 *	@return A String containing the pet's body mass index. If the pet is not found, the user is notified
 	 */
 	public String calculateBMI(String petName) {
-		
+					
 		String msg = "";
 		boolean found = false;
 		double bmi = 0;
@@ -522,8 +492,9 @@ public class Clinic {
 	 * <p>
 	 * <b> pre: </b> <code> owners != null </code> <br> 
 	 * <b> post: </b> The address and /or phone number of the client is updated. <br>
-	 * @param The new address of the client. This param could be empty.
-	 * @param The new phone number of the client. This param could be empty.
+	 * @param addr The new address of the client. This param could be empty.
+	 * @param phoneNum The new phone number of the client. This param could be empty.
+	 * @param oName The name of the owner whose data will be updated
 	 * @return A message informing the user if the pet owner's information was updated successfully
 	 */
 	public String updateOwnerData(String addr, int phoneNum, String oName) {
@@ -552,14 +523,14 @@ public class Clinic {
 	 * <p>
 	 * <b> pre: </b> <code> owners != null </code> <br>
 	 * <b> post: </b> New medicines were added to the patient clinic story.
-	 * @param The pet's name. This param must not be null.
-	 * @param The medicine name. This param must be not null.
-	 * @param The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
-	 * @param The medicine cost by each dose. This param could be empty.
-	 * @param The frequency of medicine application. This param could be empty.
+	 * @param petName The pet's name. This param must not be null.
+	 * @param name The medicine name. This param must be not null.
+	 * @param dose The medicine dose, this param refers to the amount of medicine supplied to the pet each time according the frequence assigned.
+	 * @param cost The medicine cost by each dose. This param could be empty.
+	 * @param frequency The frequency of medicine application. This param could be empty.
 	 * @return A message that indiques if medicine was added to the patient clinic story
 	 */
-	public String addNewMedication(String petName, double dose, double cost, double frequency) {
+	public String addNewMedication(String petName, String medName, double dose, double cost, double frequency) {
 		
 		String msg = "";
 		boolean found = false;
@@ -567,7 +538,7 @@ public class Clinic {
 		for(int i = 0; i < MAX_ROOMS; i++) {
 			if(!rooms[i].getAvailable()) {
 				if(rooms[i].getCurrentPet().getName().equals(petName)) {
-					msg = rooms[i].addNewMedication(name, dose, cost, frequency);
+					msg = rooms[i].addNewMedication(medName, dose, cost, frequency);
 					found = true;
 				}
 			}
@@ -716,16 +687,17 @@ public class Clinic {
 	}
 	
 	//Getters
-	
 	/**
+	 * Returns the full name of the clinic
 	 * 
-	 * @return
+	 * @return The name of the clinic
 	 */
 	public String getName() { return name; }
 	
 	/**
+	 * Returns the clinic's total revenue from hospitalization
 	 * 
-	 * @return
+	 * @return A double with the total revenue from hospitalization 
 	 */
 	public double getHRevenue() { return hRevenue; }
 	

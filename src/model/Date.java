@@ -122,12 +122,25 @@ public class Date {
 	}
 	
 	//Getters
-	public int getDay() { return day; }
-	public int getMonth() { return month; }
-	public int getYear() { return year; }
 	
-	//Setters
-	public void setDay(int d) { day = d; }
-	public void setMonth(int m) { month = m; }
-	public void setYear(int y) { year = y; }
+	/**
+	 * Returns the day of the month of the date 
+	 * 
+	 * @return A number representing the day of the month
+	 */
+	public int getDay() { return day; }
+	
+	/**
+	 * Returns the month of the date
+	 * 
+	 * @return A number representing the month
+	 */
+	public int getMonth() { return month; }
+	
+	/**
+	 * Returns the year of the date
+	 * 
+	 * @return A number representing the year
+	 */
+	public int getYear() { return year; }
 }

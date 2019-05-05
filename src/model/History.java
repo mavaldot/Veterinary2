@@ -38,11 +38,20 @@ public class History {
 	}
 	
 	//Getters
+	
+	/**
+	 * Return the name of the pet
+	 * 
+	 * @return The name of the pet
+	 */
 	public String getPetName() { return petName; }
+	
+	/**
+	 * Returns an array list containing all of the available records of the history
+	 * 
+	 * @return A list of records of the history
+	 */
 	public ArrayList<Record> getRecords() { return records; }
 	
-	//Setters
-	public void setPetName(String name) { petName = name; }
-	public void setRecords(ArrayList<Record> rs) { records = rs; }
 	
 }
