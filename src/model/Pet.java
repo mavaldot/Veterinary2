@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * 
+ * Contains all the important information of a pet
+ * 
+ * @author Mateo
+ *
+ */
 public class Pet {
 	
 	//Static attributes

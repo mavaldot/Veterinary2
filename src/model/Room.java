@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * 
+ * Models a room in the clinic with a pet and his record
+ * 
+ * @author Mateo Valdes
+ *
+ */
 public class Room {
 
 	//Attributes
@@ -107,17 +114,44 @@ public class Room {
 		
 	}
 	
+	/**
+ 	 * Description This method allows to add a new symptom presented during the hospitalization at the patient stories.
+ 	 * <p>
+	 * pre: The patient clinic story must be not null. <br>
+	 * post: New notes were added to the possible diagnostic in the patient clinic story.
+	 * @param The new symptoms. This param must be not null.
+	 */
+	public void addNewSymptom(String newSymptom) {
+		
+		record.addSymptom(newSymptom);
+		
+	}
+	
 	
 	//Getters
-	public String getName() { return name; }
-	public Pet getCurrentPet() { return currentPet; }
-	public Record getRecord() { return record; }
-	public boolean getAvailable() { return available; }
 	
-	//Setters
-	public void setName(String n) { name = n; }
-	public void setCurrentPet(Pet cp) { currentPet = cp; }
-	public void setRecord(Record r) { record = r; }
-	public void setAvailable(boolean a) { available = a; }
+	/**
+	 * 
+	 * @return
+	 */
+	public String getName() { return name; }
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Pet getCurrentPet() { return currentPet; }
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Record getRecord() { return record; }
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean getAvailable() { return available; }
 	
 }

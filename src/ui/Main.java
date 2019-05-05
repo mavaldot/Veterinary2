@@ -141,7 +141,7 @@ public class Main {
 			System.out.println("17. Add a new service to the clinic");
 			System.out.println("18. Check the average revenue for services");
 			System.out.println("19. Check the clinic's revenue in a given week");
-			System.out.println("20. Report the services performed within a given week");
+			System.out.println("20. Report the services performed within a specific timeframe");
 			System.out.println("21. Quit");
 			System.out.println("");
 			
@@ -449,7 +449,11 @@ public class Main {
 				
 			case 14:
 				
-				
+				System.out.println("Please enter the name of the hospitalized pet");
+				String sympPetName = s.nextLine();
+				System.out.println("Please enter the new symptom");
+				String newSymptom = s.nextLine();
+				System.out.println(clinic.addNewDiagnosis(sympPetName, newSymptom));
 				break;
 				
 			case 15:
@@ -488,13 +492,23 @@ public class Main {
 				
 			case 19:
 				
-				
+				int sDay = askInt("Please enter the day of month when the week started");
+				int sMonth = askInt("The enter the month when the week started");
+				int sYear = askInt("The enter the year when the week started");
+				System.out.printf("The clinic's revenue for that week was: $%.2f \n", clinic.calculateWeekServiceRevenue(sDay, sMonth, sYear));
 				break;
 				
 			case 20:
 				
-				
+				int minD = askInt("Please enter the day of month when the time frame begins");
+				int minM = askInt("The enter the month when the time frame begins");
+				int minY = askInt("The enter the year when the time frame begins");
+				int maxD = askInt("Please enter the day of month when the time frame ends");
+				int maxM = askInt("The enter the month when the time frame ends");
+				int maxY = askInt("The enter the year when the time frame ends");
+				System.out.println(clinic.reportServicesWithinRange(minD, minM, minY, maxD, maxM, maxY));
 				break;
+				
 				
 			case 21:
 				running = false;

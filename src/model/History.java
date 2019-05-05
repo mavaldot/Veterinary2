@@ -2,6 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * Contains all the records of a particular pet
+ * 
+ * @author Mateo
+ *
+ */
 public class History {
 
 	//Attributes

@@ -27,7 +27,9 @@ public class Clinic {
 	 * Class constructor
 	 * <p>
 	 * <b> post: </b> The room array is initialized <br>
-	 * <b> post: </b> The histories, owners and services arraylists are initialized. <br>
+	 * <b> post: </b> The histories arraylist are initialized. <br>
+	 * <b> post: </b> The owners arraylist are initialized. <br>
+	 * <b> post: </b> The services arraylist are initialized. <br>
 	 * @param n		The name of the clinic
 	 */
 	public Clinic(String n) {
@@ -51,6 +53,18 @@ public class Clinic {
 		for(int i = 0; i < MAX_ROOMS; i++) {
 			rooms[i] = new Room("Room " + (i+1), null, null, true);
 		}
+		
+		
+		addOwner("Johan", "10045675", "Calle 5 # 121 - 34", 5554345);
+		addPet("Max", Pet.DOG, 5, 43.5, 65.6);
+		addPet("Li", Pet.BIRD, 3, 3.2, 3.4);
+		addOwner("Esteban", "10087654", "Calle 5 # 150 - 67", 5556787);
+		addPet("Ko", Pet.CAT, 4, 5.5, 7.6);
+		addPet("Bu", Pet.OTHER, 1, 2.2, 9.4);
+		
+		addService(Service.BATH, 4, 5, 2017, "Max");
+		addService(Service.DENTALPROPHYLAXIS, 12, 1, 2019, "Li");
+		addService(Service.HOMEBATH, 24, 7, 2018, "Ko");
 	}
 	
 	/**
@@ -573,7 +587,7 @@ public class Clinic {
 	 * 
 	 * @param petName		The name of the pet whose new possible diagnosis will be added
 	 * @param newDiagnosis	The new diagnosis that will be added to the pet's record
-	 * @return	A String indicating whether it was possible to add the new diagnosis to the pet
+	 * @return	A String indicating whether it was possible to add the new diagnosis to the hospitalized pet's record
 	 */
 	public String addNewDiagnosis(String petName, String newDiagnosis) {
 		
@@ -598,15 +612,121 @@ public class Clinic {
 		
 	}
 	
-	//Getters
-	public String getName() { return name; }
-	public double getHRevenue() { return hRevenue; }
-	public ArrayList<Owner> getOwners() { return owners; }
-	public ArrayList<History> getHistories() { return histories; }
+	/**
+	 * Adds a new symptom to a hospitalized pet's list of symptoms
+	 * <p>
+	 * <b> post: </b> The pet's symptom is updated
+	 * 
+	 * @param petName		The name of the pet whose new symptom will be added
+	 * @param newDiagnosis	The new symptom that will be added to the pet's record
+	 * @return	A String indicating whether it was possible to add the new symptom to the hospitalized pet's record
+	 */
+	public String addNewSymptom(String petName, String newSymptom) {
+		
+		String msg = "";
+		boolean found = false;
+		
+		for(int i = 0; i < MAX_ROOMS; i++) {
+			if(!rooms[i].getAvailable()) {
+				if(rooms[i].getCurrentPet().getName().equals(petName)) {
+					rooms[i].addNewSymptom(newSymptom);
+					found = true;
+				}
+			}
+		}
+		
+		if(found)
+			msg = "The new symptom was added successfully";
+		else
+			msg = "There is no pet named " + petName + " currently hospitalized in this veterinary clinic";
+		
+		return msg;
+		
+	}
 	
-	//Setters
-	public void setName(String n) { name = n; }
-	public void setRevenue(double rev) { hRevenue = rev; }
-	public void setOwner(ArrayList<Owner> owns) { owners = owns; }
-	public void setHistories(ArrayList<History> hs) { histories = hs; }	
+	/**
+	 * Calculates the service revenue in a given week
+	 * <p>
+	 * <b> pre: </b> <code> services != null </code>
+	 * 
+	 * @param day		The day of the month when the week starts
+	 * @param month		The month when the week starts
+	 * @param year		The year when the week starts
+	 * @return			The total revenue in the given week
+	 */
+	public double calculateWeekServiceRevenue(int day, int month, int year) {
+
+		double wRevenue = 0;
+		
+		Date date = new Date(day, month, year);
+		int dateInt = date.toInt();
+		
+		for(Service s : services) {
+			int sDate = s.getDate().toInt();
+			if(sDate > dateInt && sDate < (dateInt + 6) )
+				;
+		}
+		
+		return wRevenue;
+		
+	} 
+	
+	/**
+	 * Determines if a service has been performed within the given timeframe and gives 
+	 * a full report of the service.
+	 * 
+	 * @param minD	Day of the month when the time frame begins
+	 * @param minM	Month when the time frame begins
+	 * @param minY	Year when the time frame begins
+	 * @param maxD	Day of the month when the time frame ends
+	 * @param maxM	Month when the time frame ends
+	 * @param maxY	Year when the time frame ends
+	 * @return		A full report of all the services performed by the clinic within that time frame
+	 */
+	public String reportServicesWithinRange(int minD, int minM, int minY, int maxD, int maxM, int maxY) {
+		Date minDate = new Date(minD, minM, minY);
+		Date maxDate = new Date(maxD, maxM, maxY);
+		
+		int min = minDate.toInt();
+		int max = maxDate.toInt();
+		
+		int sNum = 0;
+		
+		System.out.println(min);
+		System.out.println(max);
+		
+		String msg = "The services within that time frame are: \n\n";
+		
+		for(Service s : services) {
+			int sDate = s.getDate().toInt();
+			System.out.println(sDate);
+			if(sDate > min && sDate < max) {
+				sNum++;
+				msg += "Service #" + sNum + ":\n";
+				msg += s.fullReport() + "\n";
+			}
+		}
+		
+		
+		
+		if(sNum == 0)
+			msg = "There are no services within that time frame.";
+		
+		return msg;
+	}
+	
+	//Getters
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String getName() { return name; }
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public double getHRevenue() { return hRevenue; }
+	
 }

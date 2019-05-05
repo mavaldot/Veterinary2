@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * 
+ * Contains the details of all the services performed by the clinic
+ * 
+ * @author Mateo Valdes
+ *
+ */
 public class Service {
 
 	//Static attributes
@@ -28,6 +35,35 @@ public class Service {
 		serviceDate = sd;
 		petID = pid;
 		ownerID = oid;
+	}
+	
+	/**
+	 * Determines the type of service and converts it into a string of words
+	 * 
+	 * @return A string containing the type of service
+	 */
+	public String whatType() {
+	
+		String typeStr = "";
+		
+		switch(type) {
+		case 1: 
+			typeStr = "Bath";
+			break;
+		case 2:
+			typeStr = "Home bath";
+		case 3:
+			typeStr = "Nail trmming";
+			break;
+		case 4:
+			typeStr = "Dental prophylaxis";
+			break;
+		case 5:
+			typeStr = "Vaccination";
+			break;
+		}
+		
+		return typeStr;
 	}
 	
 	/**
@@ -70,6 +106,32 @@ public class Service {
 		this.cost = cost;
 		
 		return cost;
+	}
+	
+	/**
+	 * Creates a full report containing all the service's important information
+	 * <p>
+	 * <b> pre: </b> <code> serviceDate </code> <br>
+	 * 
+	 * @return The full report of all the service's information
+	 */
+	public String fullReport() {
+		
+		String msg = "";
+		
+		msg += "Type: " + whatType() + "\n";
+		msg += "Cost: " + calculateCost() + "\n";
+		msg += "Date: " + serviceDate.reportDate();
+		msg += "Pet ID: " + petID + "\n";
+		msg += "User ID:" + ownerID + "\n";
+		
+		
+		return msg;
+	}
+	
+	//Getters
+	public Date getDate() {
+		return serviceDate;
 	}
 	
 	

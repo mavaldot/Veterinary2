@@ -2,6 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * Contains important data about the pet owner.
+ * 
+ * @author Mateo Valdes
+ *
+ */
 public class Owner {
 
 	//Attributes

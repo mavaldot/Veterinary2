@@ -2,6 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * Models the medical record of a pet that is or has been hospitalized in the clinic.
+ * 
+ * @author Mateo Valdes
+ *
+ */
 public class Record {
 
 	//Static attributes
@@ -99,6 +106,16 @@ public class Record {
 	 */
 	public void addDiagnosis(String newDiagnosis) {
 		diagnosis += newDiagnosis + "\n";
+	}
+
+	/**
+	 * Adds a new symptom to the pet's list of symptoms 
+	 * <p>
+	 * <b> post: </b> A new symptom is added to the pet's list of symptoms
+	 * @param newSymptom	The new symptom presented by the pet
+	 */
+	public void addSymptom(String newSymptom) {
+		symptoms += newSymptom + "\n";
 	}
 	
 	//Getters

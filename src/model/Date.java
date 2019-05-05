@@ -1,6 +1,6 @@
 package model;
 
-/*
+/**
  * Contains day, month, and year. 
  * 
  * @author	Mateo Valdes
@@ -37,12 +37,87 @@ public class Date {
 		return report;
 	}
 	
-	
-	public long toLong() {
+	/**
+	 * Converts the date to an int representing the number of days that have passed since the birth of Jesus Christ
+	 *
+	 * @return an int representing the number of days that passed since the birth of Jesus Christ
+	 */
+	public int toInt() {
 		
-		long rValue = 0;
+		int totalDays = 0;
 		
-		return rValue;
+		totalDays += year*365;
+		
+		switch(month) {
+		
+		case 1:
+			
+			break;
+			
+		case 2:
+			
+			totalDays += 31;
+			break;
+			
+		case 3:
+			
+			totalDays += 59;
+			break;
+		case 4:
+			
+			totalDays += 90;
+			
+			break;
+			
+		case 5: 
+			
+			totalDays += 120;
+			break;
+			
+		case 6:
+			
+			totalDays += 151;
+			break;
+			
+		case 7:
+			
+			totalDays += 181;
+			break;
+			
+		case 8: 
+			
+			totalDays += 212;
+			break;
+			
+		case 9:
+			
+			totalDays += 243;
+			break;
+			
+		case 10:
+			
+			totalDays += 273;
+			break;
+			
+		case 11:
+			
+			totalDays += 304;
+			break;
+			
+		case 12:
+			
+			totalDays += 334;
+			break;
+			
+		default:
+				
+			break;
+				
+		}
+		
+		totalDays += day;
+		
+		return totalDays;
 		
 	}
 	
