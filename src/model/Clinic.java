@@ -66,7 +66,7 @@ public class Clinic {
 		hospitalizePet("Johan", "Max", 2, 2, 2018, "Fever", "Viral infection");
 		
 		addNewMedication("Max", "Dolex", 4, 4, 4);
-		addNewMedication("Ko", "Ritalin", 3, 2, 5);
+		addNewMedication("Ko", "Ritalin", 3.5, 2.5, 5);
 		releasePet("Max", 2, 5, 2018);
 		
 		addService(Service.BATH, 4, 5, 2017, "Max");
@@ -621,18 +621,19 @@ public class Clinic {
 	}
 	
 	/**
-	 * Calculates the service revenue in a given week
+	 * Calculates the average service revenue in a given week
 	 * <p>
 	 * <b> pre: </b> <code> services != null </code>
 	 * 
 	 * @param day		The day of the month when the week starts
 	 * @param month		The month when the week starts
 	 * @param year		The year when the week starts
-	 * @return			The total revenue in the given week
+	 * @return			The average revenue in the given week
 	 */
 	public double calculateWeekServiceRevenue(int day, int month, int year) {
 
 		double wRevenue = 0;
+		double avgRevenue = 0;
 		
 		Date date = new Date(day, month, year);
 		int dateInt = date.toInt();
@@ -640,10 +641,14 @@ public class Clinic {
 		for(Service s : services) {
 			int sDate = s.getDate().toInt();
 			if(sDate > dateInt && sDate < (dateInt + 6) )
-				;
+				wRevenue += s.calculateCost();
 		}
 		
-		return wRevenue;
+		if(services.size() != 0) {
+			avgRevenue = wRevenue / services.size();
+		}
+		
+		return avgRevenue;
 		
 	} 
 	
