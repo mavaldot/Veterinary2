@@ -457,7 +457,7 @@ public class Main {
 				String newSymptom = s.nextLine();
 				System.out.println(clinic.addNewDiagnosis(sympPetName, newSymptom));
 				break;
-				
+					
 			case 15:
 				
 				System.out.println("The clinic's total revenue from services is: $" + clinic.calculateServiceRevenue() + ".");
